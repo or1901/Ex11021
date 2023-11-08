@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This function displays the input of the edit text in the text view.
+     * @param view The button that was clicked to read the edit text.
+     */
     public void readEt(View view) {
         tV.setText(eT.getText().toString());
     }
