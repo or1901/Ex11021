@@ -1,9 +1,13 @@
 package com.example.ex11021;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     InputStreamReader iSR;
     BufferedReader bR;
     StringBuilder sB;
+    Intent si;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This function reads the text from the file, and displays it to the text view.
+     * <p>
+     *
      * @param view The button that was clicked to read the file.
      */
     public void readFile(View view) {
@@ -77,9 +84,44 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This function displays the input of the edit text in the text view.
+     * <p>
+     *
      * @param view The button that was clicked to read the edit text.
      */
     public void readEt(View view) {
         tV.setText(eT.getText().toString());
+    }
+
+    /**
+     * This function presents the options menu for moving between activities.
+     * <p>
+     *
+     * @param menu The options menu in which you place your items.
+     * @return true in order to show the menu, otherwise false.
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    /**
+     * This function reacts to the user choice in the options menu - it moves to the chosen
+     * activity from the menu.
+     * <p>
+     *
+     * @param item The menu item that was selected.
+     * @return Must return true for the menu to react.
+     */
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        int id = item.getItemId();
+
+        if(id == R.id.menuCredits){
+            si = new Intent(this, CreditsActivity.class);
+            startActivity(si);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
